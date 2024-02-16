@@ -23,17 +23,18 @@ AddEventHandler('angelicxs-YachtHeist:CustomNotify', function(message, type)
 end)
 
 -- Visual Preference
-Config.Use3DText = true 					-- Use 3D text for NPC interactions; only turn to false if Config.UseThirdEye is turned on and IS working.
+Config.Use3DText = false 					-- Use 3D text for NPC interactions; only turn to false if Config.UseThirdEye is turned on and IS working.
 Config.UseThirdEye = true 					-- Enables using a third eye (third eye requires the following arguments debugPoly, useZ, options {event, icon, label}, distance)
 Config.ThirdEyeName = 'qb-target' 			-- Name of third eye aplication
 
 --LEO Configuration
-Config.RequireMinimumLEO = false 			-- When on will require a minimum number of LEOs to be available to start robbery
-Config.RequiredNumberLEO = 4 				-- Minimum number of LEO needed for robbery to start when Config.RequireMinimumLEO = true
-Config.LEOJobName = {'police', 'bcso'} 		-- Job name of law enforcement officers
+Config.RequireMinimumLEO = true 			-- When on will require a minimum number of LEOs to be available to start robbery
+Config.RequiredNumberLEO = 2 				-- Minimum number of LEO needed for robbery to start when Config.RequireMinimumLEO = true
+Config.LEOJobName = {'police', 'bcso', 'lspd', 'sasp', 'sapr'} 		-- Job name of law enforcement officers
 Config.Cooldown = 90						-- How long until the heist is able to be redone after activating (in minutes)
 RegisterNetEvent('angelicxs-YachtHeist:PoliceAlert')
 AddEventHandler('angelicxs-YachtHeist:PoliceAlert', function(coords)
+	exports['ps-dispatch']:YachtHeist()
     -- TriggerEvent("police:client:policeAlert", coords, "illegal Hunting in area")
 	--[[
 		local data = exports['cd_dispatch']:GetPlayerInfo()
